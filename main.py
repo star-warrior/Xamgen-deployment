@@ -20,13 +20,16 @@ app.secret_key = os.getenv('FLASK_SECRET_KEY')
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'  # For development only
 os.environ['OAUTHLIB_RELAX_TOKEN_SCOPE'] = '1'  # Add this line
 
+# Get the deployment URL from environment variable or use localhost for development
+DEPLOYMENT_URL = os.getenv('RENDER_EXTERNAL_URL', 'http://127.0.0.1:5000')
+
 google_bp = make_google_blueprint(
     client_id=os.getenv('GOOGLE_CLIENT_ID'),
     client_secret=os.getenv('GOOGLE_CLIENT_SECRET'),
     scope=["openid", 
            "https://www.googleapis.com/auth/userinfo.email",
            "https://www.googleapis.com/auth/userinfo.profile"],
-    redirect_url="http://127.0.0.1:5000/login/google/authorized",  # Use full URL
+    redirect_url=f"{DEPLOYMENT_URL}/login/google/authorized",
     offline=True
 )
 app.register_blueprint(google_bp, url_prefix="/login")
@@ -34,13 +37,12 @@ app.register_blueprint(google_bp, url_prefix="/login")
 pdf_processor = PDFProcessor()
 
 UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = {'pdf'}
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# Create uploads directory if it doesn't exist
-if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+ALLOWED_EXTENSIONS = {'pdf'}
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
