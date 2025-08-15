@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #1f2333;
+  color: white;
+  padding: 2rem;
+}
+
+.paper-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #242937;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.paper-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.paper-title {
+  color: #39e991;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.paper-filename {
+  color: #6c757d;
+  font-size: 1rem;
+}
+
+.questions-list {
+  list-style: none;
+}
+
+.question-item {
+  background: #1f2333;
+  padding: 1.5rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid #39e991;
+}
+
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.question-id {
+  color: #39e991;
+  font-weight: bold;
+}
+
+.question-text {
+  color: white;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.answer-section {
+  background: rgba(57, 233, 145, 0.1);
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.answer-toggle {
+  background: none;
+  border: none;
+  color: #39e991;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.answer-content {
+  display: none;
+  margin-top: 1rem;
+  color: #39e991;
+}
+
+.answer-content.show {
+  display: block;
+}
+
+.error-message {
+  color: #dc3545;
+  text-align: center;
+  font-size: 1.2rem;
+  margin: 2rem 0;
+}
+
+.back-btn {
+  background: #39e991;
+  color: #242937;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.back-btn:hover {
+  background: #2bc77a;
+}
+
+.question-select {
+  margin-right: 1rem;
+  width: 20px;
+  height: 20px;
+  accent-color: #39e991;
+}
+
+.marks-input {
+  width: 60px;
+  padding: 0.25rem;
+  border: 1px solid #39e991;
+  border-radius: 4px;
+  background: #1f2333;
+  color: white;
+  text-align: center;
+}
+
+.marks-label {
+  color: #6c757d;
+  margin-right: 0.5rem;
+}
+
+.generate-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #39e991;
+  color: #242937;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.generate-btn.show {
+  display: block;
+}
+
+.generate-btn:hover {
+  background: #2bc77a;
+}

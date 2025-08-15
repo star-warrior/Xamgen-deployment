@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paper View - XamGen</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/paper1.css') }}">
+  </head>
+  <body>
+    <button onclick="location.href='/'" class="back-btn">
+      <svg
+        viewBox="0 0 24 24"
+        width="16"
+        height="16"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </svg>
+      Back to Home
+    </button>
+
+    <div class="paper-container">
+      {% if error %}
+      <p class="error-message">{{ error }}</p>
+      {% else %}
+      <div class="paper-header">
+        <h1 class="paper-title">Question Paper</h1>
+        <p class="paper-filename">{{ filename }}</p>
+      </div>
+
+      {% if questions %}
+      <ul class="questions-list">
+        {% for question in questions %}
+        <li class="question-item">
+          <div class="question-header">
+            <div style="display: flex; align-items: center; gap: 1rem">
+              <input
+                type="checkbox"
+                class="question-select"
+                onchange="handleSelection()"
+              />
+              <span class="question-id">Question {{ question.id }}</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem">
+              <label class="marks-label">Marks:</label>
+              <input
+                type="number"
+                class="marks-input"
+                min="0"
+                max="7"
+                value="0"
+                onchange="handleSelection()"
+              />
+            </div>
+          </div>
+          <p class="question-text">{{ question.text }}</p>
+          <div class="answer-section">
+            <button class="answer-toggle" onclick="toggleAnswer(this)">
+              <svg
+                viewBox="0 0 24 24"
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              Show Answer
+            </button>
+            <div class="answer-content">{{ question.answer }}</div>
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      <p class="error-message">No questions found in this PDF.</p>
+      {% endif %} {% endif %}
+    </div>
+
+    <button id="generateBtn" class="generate-btn" onclick="generatePDF()">
+      Generate Question Paper
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="{{ url_for('static', filename='js/paper1.js') }}"></script>
+  </body>
+</html>

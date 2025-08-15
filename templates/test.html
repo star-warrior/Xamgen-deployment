@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Module</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Slide 1: Module with Questions -->
+      <div id="slide1" class="slide active">
+        <div class="header">
+          <button class="back-btn" onclick="goBack()">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <div class="module-title" id="moduleTitle">Module A</div>
+          <button class="select-btn" onclick="showSelectionSlide()">
+            Select
+          </button>
+        </div>
+        <div class="questions-container" id="questionsContainer">
+          <!-- Questions will be dynamically added here -->
+        </div>
+      </div>
+
+      <!-- Slide 2: Selection Slide -->
+      <div id="slide2" class="slide" style="display: none">
+        <div class="header">
+          <button class="back-btn" onclick="showSlide('slide1')">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <div class="module-title" id="moduleTitle2">Module A</div>
+          <button class="select-btn" style="visibility: hidden">Select</button>
+        </div>
+        <div class="selected-info" id="selectedInfo">1 question selected*</div>
+        <div class="questions-container" id="selectableQuestionsContainer">
+          <!-- Selectable questions will be dynamically added here -->
+        </div>
+        <button class="next-btn" onclick="showPaperSlide()">Next</button>
+      </div>
+
+      <!-- Slide 3: Paper Slide -->
+      <div id="slide3" class="slide" style="display: none">
+        <div class="header">
+          <button class="back-btn" onclick="showSlide('slide2')">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <input
+            type="text"
+            class="editable-title"
+            id="paperTitle"
+            value="paper"
+            placeholder="Enter paper name"
+          />
+          <button class="marks-btn">Marks</button>
+        </div>
+        <div class="paper-container">
+          <div
+            class="question-paper"
+            id="questionPaper"
+            contenteditable="false"
+          >
+            <!-- Selected questions will be dynamically added here -->
+          </div>
+          <div class="paper-controls">
+            <button
+              class="add-text-btn"
+              id="addTextBtn"
+              onclick="enableEditing()"
+            >
+              Add Text
+            </button>
+            <button class="submit-btn" onclick="showFinalSlide()">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: Final Paper Slide -->
+      <div id="slide4" class="slide" style="display: none">
+        <div class="header">
+          <button class="back-btn" onclick="showSlide('slide3')">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+          </button>
+          <div class="module-title" id="finalPaperTitle">paper</div>
+          <button class="marks-btn">Marks</button>
+        </div>
+        <div class="paper-container">
+          <div class="question-paper" id="finalPaper">
+            <!-- Final paper content will be dynamically added here -->
+          </div>
+          <button class="save-btn">Save</button>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/test.js') }}"></script>
+  </body>
+</html>
